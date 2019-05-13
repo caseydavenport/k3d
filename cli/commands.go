@@ -96,7 +96,7 @@ func CreateCluster(c *cli.Context) error {
 	}
 
 	publishedPorts, err := createPublishedPorts(c.StringSlice("publish"))
-	if (err != nil) {
+	if err != nil {
 		log.Fatalf("ERROR: failed to parse the publish parameter.\n%+v", err)
 	}
 
@@ -166,7 +166,7 @@ func CreateCluster(c *cli.Context) error {
 	// spin up the worker nodes
 	// TODO: do this concurrently in different goroutines
 	if c.Int("workers") > 0 {
-		k3sWorkerArgs := []string{}
+		k3sWorkerArgs := []string{"--no-flannel"}
 		env := []string{k3sClusterSecret}
 		log.Printf("Booting %s workers for cluster %s", strconv.Itoa(c.Int("workers")), c.String("name"))
 		for i := 0; i < c.Int("workers"); i++ {
