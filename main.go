@@ -93,6 +93,10 @@ func main() {
 					Usage: "Pass an additional argument to k3s server (new flag per argument)",
 				},
 				cli.StringSliceFlag{
+					Name:  "worker-arg",
+					Usage: "Pass an additional argument to k3s worker (new flag per argument)",
+				},
+				cli.StringSliceFlag{
 					Name:  "env, e",
 					Usage: "Pass an additional environment variable (new flag per variable)",
 				},
